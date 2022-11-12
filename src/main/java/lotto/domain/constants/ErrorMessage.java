@@ -1,4 +1,4 @@
 package lotto.domain.constants;
 
-public enum Format {
+public enum ErrorMessage {
 }
