@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.validator.NumbersValidator;
+import lotto.domain.validator.LottoNumbersValidator;
 
 import java.util.List;
 
@@ -12,9 +12,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        NumbersValidator.validateLottoNumbers(numbers);
+    public boolean containsThisNumber(int number) {
+        return numbers.contains(number);
     }
 
-    // TODO: 추가 기능 구현
+    private void validate(List<Integer> numbers) {
+        LottoNumbersValidator.validateLottoNumbers(numbers);
+    }
+
+    // TODO: 로또 번호 꺼내기
 }
