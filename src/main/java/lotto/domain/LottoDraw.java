@@ -22,34 +22,33 @@ public class LottoDraw {
         LottoNumbersValidator.validateLottoDrawNumbers(winningLotto, bonusNumber);
     }
 
-    public Map<Integer, Integer> sumUpCountOfRankings(List<Lotto> purchasedLottos) {
-        Map<Integer, Integer> totalCountOfRankings = initializeCountOfRankings();
+    public Map<LottoRank, Integer> sumUpCountOfRankings(List<Lotto> purchasedLottos) {
+        Map<LottoRank, Integer> totalCountOfRankings = initializeCountOfRankings();
         purchasedLottos.stream()
                 .map(this::calculateRankingByPurchasedLotto)
                 .forEach(ranking -> addOneToCountOfRankings(totalCountOfRankings, ranking));
         return totalCountOfRankings;
     }
 
-    private Map<Integer, Integer> initializeCountOfRankings() {
-        Map<Integer, Integer> totalCountOfRankings = new HashMap<>();
+    private Map<LottoRank, Integer> initializeCountOfRankings() {
+        Map<LottoRank, Integer> totalCountOfRankings = new HashMap<>();
         Arrays.stream(LottoRank.values())
-                .map(LottoRank::getValue)
                 .forEach(rankValue -> totalCountOfRankings.put(rankValue, 0));
         return totalCountOfRankings;
     }
 
-    private void addOneToCountOfRankings(Map<Integer, Integer> totalCountOfRankings, int ranking) {
+    private void addOneToCountOfRankings(Map<LottoRank, Integer> totalCountOfRankings, LottoRank ranking) {
         int count = totalCountOfRankings.getOrDefault(ranking, 0) + 1;
         totalCountOfRankings.put(ranking, count);
     }
 
-    private int calculateRankingByPurchasedLotto(Lotto purchasedLotto) {
+    private LottoRank calculateRankingByPurchasedLotto(Lotto purchasedLotto) {
         for (LottoRank rank : LottoRank.values()) {
             if (isRightRanking(rank, purchasedLotto)) {
-                return rank.getValue();
+                return rank;
             }
         }
-        return LottoRank.RANK_LOSE.getValue();
+        return LottoRank.RANK_LOSE;
     }
 
     private boolean isRightRanking(LottoRank rank, Lotto purchasedLotto) {
