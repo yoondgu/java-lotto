@@ -17,6 +17,15 @@ public class LottoDraw {
         LottoNumbersValidator.validateLottoDrawNumbers(winningLotto, bonusNumber);
     }
 
+    private int calculateRankingByPurchasedLotto(Lotto purchasedLotto) {
+        for (WinningRank rank : WinningRank.values()) {
+            if (isRightRanking(rank, purchasedLotto)) {
+                return rank.getValue();
+            }
+        }
+        return WinningRank.RANK_NOTHING.getValue();
+    }
+
     private boolean isRightRanking(WinningRank rank, Lotto purchasedLotto) {
         int matchCount = winningLotto.countMatchingNumbers(purchasedLotto);
         if (rank.hasSameMatchCount(matchCount) && rank.requiredToCheckBonus()) {
