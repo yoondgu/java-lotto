@@ -4,7 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoDrawTest {
@@ -22,5 +24,25 @@ class LottoDrawTest {
     void createLottoDrawByDuplicatedBonusNumber() {
         assertThatThrownBy(() -> new LottoDraw(winningLotto, 6))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 등수의 개수 합산 시 0개인 등수도 모두 저장")
+    @Test
+    void sumUpCountOfAllRankingsIncludingZero() {
+        List<Lotto> purchasedLottos = LottoSeller.issueLottosByAmount(10);
+        Map<Integer, Integer> totalCountOfRankings = new LottoDraw(winningLotto, 7).sumUpCountOfRankings(purchasedLottos);
+        assertThat(totalCountOfRankings.keySet()).containsExactlyInAnyOrder(1,2,3,4,5,-1);
+    }
+
+    @DisplayName("당첨 등수의 개수 합산 시 낙첨인 경우도 -1등으로 개수를 저장")
+    @Test
+    void sumUpCountOfAllRankingsIncludingLose() {
+        int lottosCount = 10;
+        List<Lotto> purchasedLottos = LottoSeller.issueLottosByAmount(lottosCount);
+        Map<Integer, Integer> totalCountOfRankings = new LottoDraw(winningLotto, 7).sumUpCountOfRankings(purchasedLottos);
+        int sumOfCount = totalCountOfRankings.values()
+                .stream()
+                .reduce(0, Integer::sum);
+        assertThat(sumOfCount).isEqualTo(lottosCount);
     }
 }
