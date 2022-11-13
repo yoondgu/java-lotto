@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.constants.WinningRank;
 import lotto.domain.validator.LottoNumbersValidator;
 
 public class LottoDraw {
@@ -14,5 +15,13 @@ public class LottoDraw {
 
     private void validate(Lotto winningLotto, int bonusNumber) {
         LottoNumbersValidator.validateLottoDrawNumbers(winningLotto, bonusNumber);
+    }
+
+    private boolean isRightRanking(WinningRank rank, Lotto purchasedLotto) {
+        int matchCount = winningLotto.countMatchingNumbers(purchasedLotto);
+        if (rank.hasSameMatchCount(matchCount) && rank.requiredToCheckBonus()) {
+            return purchasedLotto.containsThisNumber(bonusNumber);
+        }
+        return rank.hasSameMatchCount(matchCount);
     }
 }
