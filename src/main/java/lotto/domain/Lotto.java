@@ -12,6 +12,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int countMatchingNumbers(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::containsThisNumber)
+                .count();
+    }
+
     public boolean containsThisNumber(int number) {
         return numbers.contains(number);
     }
@@ -19,6 +25,4 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         LottoNumbersValidator.validateLottoNumbers(numbers);
     }
-
-    // TODO: 로또 번호 꺼내기
 }
