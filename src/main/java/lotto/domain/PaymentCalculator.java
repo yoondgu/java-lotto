@@ -12,8 +12,7 @@ public class PaymentCalculator {
     }
     public double calculateEarningRatio(int totalPrize) {
         MoneyValidator.validateTotalPrize(totalPrize);
-        double earningRatio = totalPrize*(100.0)/payment;
-        return Math.round(earningRatio*10)/10.0;
+        return totalPrize*(100.0)/payment;
     }
 
     public int calculateIssueAmountByPayment() {

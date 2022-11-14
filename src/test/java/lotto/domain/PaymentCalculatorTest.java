@@ -4,7 +4,6 @@ import lotto.domain.constants.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PaymentCalculatorTest {
@@ -30,12 +29,6 @@ class PaymentCalculatorTest {
         assertThatThrownBy(() -> new PaymentCalculator(1200))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.PAYMENT_HAS_REMAINDER.getValue());
-    }
-
-    @DisplayName("계산한 수익률은 소수점 둘째자리에서 반올림")
-    @Test
-    void calculateEarningRatioRoundedUpToSecondDigit() {
-        assertThat(new PaymentCalculator(6000).calculateEarningRatio(10000)).isEqualTo(166.7);
     }
 
     @DisplayName("수익률 계산 시 총 상금이 음수이면 예외가 발생")

@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.PaymentCalculator;
+import lotto.domain.TotalLottoResult;
 import lotto.service.GameService;
 import lotto.view.GameView;
 
@@ -13,13 +13,20 @@ public class GameController {
 
     public static void runGame() {
         int lottoPayment = gameView.askPayment();
-        // TODO paymentCalculator 싱글톤 처리
-        PaymentCalculator paymentCalculator = gameService.generatePaymentCalculator(lottoPayment);
-        int issueAmount = paymentCalculator.calculateIssueAmountByPayment();
+        gameService.initializePaymentCalculator(lottoPayment);
+        int issueAmount = gameService.calculateIssueAmount();
         gameView.showLottoIssueAmount(issueAmount);
-        List<Lotto> purchasedLottos = gameService.generateLottoByIssueAmount(issueAmount);
+
+        List<Lotto> purchasedLottos = gameService.sellLottosByAmount(issueAmount);
         gameView.showPurchasedLottos(purchasedLottos);
-        List<Integer> lottoDrawNumbers = gameView.askLottoDrawNumbers();
-//        System.out.println(lottoDrawNumbers);
+
+        List<Integer> drawnNumbers = gameView.askLottoDrawNumbers();
+        int drawnBonusNumber = gameView.askLottoDrawBonusNumber();
+        gameService.drawLotto(drawnNumbers, drawnBonusNumber);
+
+        TotalLottoResult result = gameService.checkTotalLottoResult(purchasedLottos);
+        gameView.showTotalLottoResult(result);
+        double earningRatio = gameService.calculateEarningRatio(result.addUpTotalPrizeAmount());
+        gameView.showEarningRatio(earningRatio);
     }
 }

@@ -16,6 +16,10 @@ public class TotalLottoResult {
         this.totalCountOfRankings = totalCountOfRankings;
     }
 
+    public int getCountByRank(LottoRank lottoRank) {
+        return totalCountOfRankings.get(lottoRank);
+    }
+
     public int addUpTotalPrizeAmount() {
         return totalCountOfRankings.keySet()
                 .stream()

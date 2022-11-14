@@ -16,10 +16,18 @@ public class MessagePrinter {
         System.out.println(content.getText());
     }
 
-    public static void printLine(int value, Format suffix) {
+    public static void printLine(Format formatString, Object value) {
         validateMessage(value);
-        validateMessage(suffix);
-        System.out.println(value + suffix.getText());
+        validateMessage(formatString);
+        System.out.println(String.format(formatString.getText(), value));
+    }
+
+    public static void printLine(Format formatString, Object value1, Object value2, Object value3) {
+        validateMessage(value1);
+        validateMessage(value2);
+        validateMessage(value3);
+        validateMessage(formatString);
+        System.out.println(String.format(formatString.getText(), value1, value2, value3));
     }
 
     private static void validateMessage(Object message) {
