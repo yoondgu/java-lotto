@@ -29,10 +29,7 @@ public class LottoNumbersValidator {
     }
 
     private static boolean hasInvalidSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != LottoRule.NUMBERS_COUNT.getValue()) {
-            return true;
-        }
-        return false;
+        return (lottoNumbers.size() != LottoRule.NUMBERS_COUNT.getValue());
     }
 
     private static boolean containsOutOfBoundsNumber(List<Integer> lottoNumbers) {
@@ -43,17 +40,11 @@ public class LottoNumbersValidator {
     private static boolean isOutOfBounds(int number) {
         int MINIMUM = LottoRule.MINIMUM_NUMBER.getValue();
         int MAXIMUM = LottoRule.MAXIMUM_NUMBER.getValue();
-        if (number < MINIMUM || number > MAXIMUM) {
-            return true;
-        }
-        return false;
+        return (number < MINIMUM || number > MAXIMUM);
     }
 
     private static boolean containsDuplicatedNumber(List<Integer> lottoNumbers) {
         int distinctedNumbersCount = (int) lottoNumbers.stream().distinct().count();
-        if (distinctedNumbersCount != LottoRule.NUMBERS_COUNT.getValue()) {
-            return true;
-        }
-        return false;
+        return (distinctedNumbersCount != LottoRule.NUMBERS_COUNT.getValue());
     }
 }
