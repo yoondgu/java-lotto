@@ -13,14 +13,14 @@ public class GameController {
 
     private GameController() { }
 
-    public static void runGame() {
+    public static void runGame() throws NullPointerException, IllegalArgumentException {
         int purchaseAmount = payForLotto();
         List<Lotto> purchasedLottos = purchaseLotto(purchaseAmount);
         drawWinningLotto();
         summarizeResult(purchasedLottos);
     }
 
-    public static void informExitByError(Exception exception) {
+    public static void informExitByError(Exception exception) throws NullPointerException {
         gameView.ShowExitByErrorMessage(exception);
     }
 

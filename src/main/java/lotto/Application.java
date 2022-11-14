@@ -6,7 +6,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             GameController.runGame();
-        } catch (IllegalArgumentException exception) {
+        } catch (Exception exception) {
             GameController.informExitByError(exception);
         }
     }

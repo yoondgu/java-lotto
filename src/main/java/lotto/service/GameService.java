@@ -21,7 +21,7 @@ public class GameService {
         return instance;
     }
 
-    public void initializePaymentCalculator(int payment) {
+    public void initializePaymentCalculator(int payment) throws IllegalArgumentException {
         this.calculator = new PaymentCalculator(payment);
     }
 
@@ -29,20 +29,20 @@ public class GameService {
         return calculator.calculateAmountByLottoPrice();
     }
 
-    public List<Lotto> sellLottosByAmount(int amount) {
+    public List<Lotto> sellLottosByAmount(int amount) throws IllegalArgumentException {
         return LottoSeller.issueLottosByAmount(amount);
     }
 
-    public void drawLotto(List<Integer> drawnNumbers, int drawnBonusNumber) {
+    public void drawLotto(List<Integer> drawnNumbers, int drawnBonusNumber) throws IllegalArgumentException {
         this.lottoDraw = new LottoDraw(new Lotto(drawnNumbers), drawnBonusNumber);
     }
 
-    public TotalLottoResult checkTotalLottoResult(List<Lotto> purchasedLottos) {
+    public TotalLottoResult checkTotalLottoResult(List<Lotto> purchasedLottos) throws IllegalArgumentException {
         Map<LottoRank, Integer> RankedCounts = lottoDraw.sumUpRankedCounts(purchasedLottos);
         return new TotalLottoResult(RankedCounts);
     }
 
-    public double calculateEarningRatio(int totalPrize) {
+    public double calculateEarningRatio(int totalPrize) throws IllegalArgumentException {
         return calculator.calculateEarningRatio(totalPrize);
     }
 }

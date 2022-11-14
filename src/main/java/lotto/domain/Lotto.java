@@ -9,8 +9,8 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
+        LottoNumbersValidator.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -29,9 +29,5 @@ public class Lotto {
         List<Integer> numbersToSort = new ArrayList<>(numbers);
         Collections.sort(numbersToSort);
         return numbersToSort.toString();
-    }
-
-    private void validate(List<Integer> numbers) {
-        LottoNumbersValidator.validateLottoNumbers(numbers);
     }
 }

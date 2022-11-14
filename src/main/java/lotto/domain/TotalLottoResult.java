@@ -8,7 +8,7 @@ import java.util.Map;
 public class TotalLottoResult {
     private final Map<LottoRank, Integer> rankedCounts;
 
-    public TotalLottoResult(Map<LottoRank, Integer> rankedCounts) {
+    public TotalLottoResult(Map<LottoRank, Integer> rankedCounts) throws IllegalArgumentException {
         RankedCountsValidator.validaterankedCounts(rankedCounts);
         this.rankedCounts = rankedCounts;
     }

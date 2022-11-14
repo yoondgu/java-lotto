@@ -12,14 +12,10 @@ public class LottoDraw {
     private final Lotto drawnLotto;
     private final int bonusNumber;
 
-    public LottoDraw(Lotto drawnLotto, int bonusNumber) {
-        validate(drawnLotto, bonusNumber);
+    public LottoDraw(Lotto drawnLotto, int bonusNumber) throws IllegalArgumentException {
+        LottoNumbersValidator.validateLottoDrawNumbers(drawnLotto, bonusNumber);
         this.drawnLotto = drawnLotto;
         this.bonusNumber = bonusNumber;
-    }
-
-    private void validate(Lotto drawnLotto, int bonusNumber) {
-        LottoNumbersValidator.validateLottoDrawNumbers(drawnLotto, bonusNumber);
     }
 
     public Map<LottoRank, Integer> sumUpRankedCounts(List<Lotto> purchasedLottos) {

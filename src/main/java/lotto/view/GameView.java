@@ -20,32 +20,32 @@ public class GameView {
         return instance;
     }
 
-    public int askPayment() {
+    public int askPayment() throws IllegalArgumentException, NullPointerException {
         MessagePrinter.printLine(OutputMessage.ASK_PAYMENT);
         return KeyboardReader.readInteger();
     }
 
-    public List<Integer> askLottoDrawNumbers() {
+    public List<Integer> askLottoDrawNumbers() throws IllegalArgumentException, NullPointerException {
         MessagePrinter.printLine(OutputMessage.ASK_DRAW_LOTTO_NUMBERS);
         return KeyboardReader.readIntegersWithFormat(Format.DELIMITER_LOTTO_NUMBERS);
     }
 
-    public void showPurchaseAmount(int amount) {
+    public void showPurchaseAmount(int amount) throws NullPointerException {
         MessagePrinter.printLine(Format.STRING_ISSUE_AMOUNT, amount);
     }
 
-    public int askLottoDrawBonusNumber() {
+    public int askLottoDrawBonusNumber() throws IllegalArgumentException, NullPointerException {
         MessagePrinter.printLine(OutputMessage.ASK_DRAW_BONUS_NUMBER);
         return KeyboardReader.readInteger();
     }
 
-    public void showPurchasedLottos(List<Lotto> lottos) {
+    public void showPurchasedLottos(List<Lotto> lottos) throws NullPointerException {
         for (Lotto lotto : lottos) {
             MessagePrinter.printLine(lotto);
         }
     }
 
-    public void showTotalLottoResult(TotalLottoResult result) {
+    public void showTotalLottoResult(TotalLottoResult result) throws NullPointerException {
         MessagePrinter.printLine(OutputMessage.INFORM_TOTAL_LOTTO_RESULT);
         DecimalFormat currecyFormatter= new DecimalFormat("###,###");
         for (LottoRank rank : LottoRank.values()) {
@@ -59,12 +59,12 @@ public class GameView {
         }
     }
 
-    public void showEarningRatio(double earningRatio) {
+    public void showEarningRatio(double earningRatio) throws NullPointerException {
         DecimalFormat currecyFormatter= new DecimalFormat("###,###.#");
         MessagePrinter.printLine(Format.STRING_EARNING_RATIO, currecyFormatter.format(earningRatio));
     }
 
-    public void ShowExitByErrorMessage(Exception exception) {
+    public void ShowExitByErrorMessage(Exception exception) throws NullPointerException {
         String errorMessage = exception.getMessage();
         if (errorMessage != null) {
             MessagePrinter.printLine(Format.STRING_ERROR_MESSAGE, errorMessage);

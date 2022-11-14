@@ -10,7 +10,7 @@ import java.util.List;
 public class LottoSeller {
     private LottoSeller() { }
 
-    public static List<Lotto> issueLottosByAmount(int amount) {
+    public static List<Lotto> issueLottosByAmount(int amount) throws IllegalArgumentException {
         validateIssueAmount(amount);
         List<Lotto> purchasedLottos = new ArrayList<>();
         while (purchasedLottos.size() < amount) {

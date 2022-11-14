@@ -6,12 +6,12 @@ import lotto.domain.validator.MoneyValidator;
 public class PaymentCalculator {
     private final int payment;
 
-    public PaymentCalculator(int payment) {
+    public PaymentCalculator(int payment) throws IllegalArgumentException {
         MoneyValidator.validatePayment(payment);
         this.payment = payment;
     }
 
-    public double calculateEarningRatio(int totalPrize) {
+    public double calculateEarningRatio(int totalPrize) throws IllegalArgumentException {
         MoneyValidator.validateTotalPrize(totalPrize);
         return (totalPrize * (100.0)) / payment;
     }
