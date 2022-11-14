@@ -6,6 +6,7 @@ public enum LottoRule {
     MAXIMUM_NUMBER(45),
     NUMBERS_COUNT(6),
     ;
+
     private final int value;
 
     LottoRule(int value) {

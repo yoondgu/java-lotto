@@ -4,6 +4,8 @@ import lotto.domain.constants.ErrorMessage;
 import lotto.domain.constants.LottoRule;
 
 public class MoneyValidator {
+    private MoneyValidator() { }
+
     public static void validatePayment(int payment) {
         if(isNegative(payment)) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.getValue());

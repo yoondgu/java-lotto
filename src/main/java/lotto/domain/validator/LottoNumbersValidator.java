@@ -7,6 +7,8 @@ import lotto.domain.constants.LottoRule;
 import java.util.List;
 
 public class LottoNumbersValidator {
+    private LottoNumbersValidator() { }
+
     public static void validateLottoDrawNumbers(Lotto winningLotto, int bonusNumber) {
         if (isOutOfBounds(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_OF_BOUNDS.getValue());

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoSeller {
+    private LottoSeller() { }
+
     public static List<Lotto> issueLottosByAmount(int amount) {
         validateIssueAmount(amount);
         List<Lotto> purchasedLottos = new ArrayList<>();

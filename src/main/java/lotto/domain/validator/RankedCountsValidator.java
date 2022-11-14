@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class RankedCountsValidator {
+    private RankedCountsValidator() { }
+
     public static void validaterankedCounts(Map<LottoRank, Integer> rankedCounts) {
         if (isRanksIllegal(rankedCounts)) {
             throw new IllegalArgumentException(ErrorMessage.RESULT_RANK_ILLEGAL.getValue());

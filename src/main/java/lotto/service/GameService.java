@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class GameService {
     private static final GameService instance = new GameService();
-
     private PaymentCalculator calculator;
     private LottoDraw lottoDraw;
+
+    private GameService() { }
 
     public static GameService getInstance() {
         return instance;
     }
-    private GameService() { }
 
     public void initializePaymentCalculator(int payment) {
         this.calculator = new PaymentCalculator(payment);

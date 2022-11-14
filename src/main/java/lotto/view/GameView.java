@@ -13,10 +13,12 @@ import java.util.List;
 
 public class GameView {
     private static final GameView instance = new GameView();
+
+    private GameView() { }
+
     public static GameView getInstance() {
         return instance;
     }
-    private GameView() { }
 
     public int askPayment() {
         MessagePrinter.printLine(OutputMessage.ASK_PAYMENT);
@@ -46,18 +48,14 @@ public class GameView {
     public void showTotalLottoResult(TotalLottoResult result) {
         MessagePrinter.printLine(OutputMessage.INFORM_TOTAL_LOTTO_RESULT);
         DecimalFormat currecyFormatter= new DecimalFormat("###,###");
-        for (LottoRank lottoRank : LottoRank.values()) {
-            // TODO 낙첨 개수 저장 제외 검토
-            if (lottoRank == LottoRank.RANK_LOSE) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.RANK_LOSE) {
                 continue;
             }
-            Format formatString = Format.STRING_RANK_RESULT;
-            if (lottoRank.isRequiredToCheckBonus()) {
-                formatString = Format.STRING_RANK_WITH_BONUS_RESULT;
-            }
-            int count = result.getCountByRank(lottoRank);
-            String prize = currecyFormatter.format(lottoRank.getPrize());
-            MessagePrinter.printLine(formatString, lottoRank.getRequiredMatchCount(), prize, count);
+            Format format = selectFormatForRankResult(rank);
+            int count = result.getCountByRank(rank);
+            String prize = currecyFormatter.format(rank.getPrize());
+            MessagePrinter.printLine(format, rank.getRequiredMatchCount(), prize, count);
         }
     }
 
@@ -72,5 +70,12 @@ public class GameView {
             MessagePrinter.printLine(Format.STRING_ERROR_MESSAGE, errorMessage);
         }
         MessagePrinter.printLine("오류 발생으로 인해 프로그램을 종료합니다.");
+    }
+
+    private Format selectFormatForRankResult(LottoRank rank) {
+        if (rank.isRequiredToCheckBonus()) {
+            return Format.STRING_RANK_WITH_BONUS_RESULT;
+        }
+        return Format.STRING_RANK_RESULT;
     }
 }

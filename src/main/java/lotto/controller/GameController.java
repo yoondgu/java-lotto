@@ -11,6 +11,8 @@ public class GameController {
     private static final GameView gameView = GameView.getInstance();
     private static final GameService gameService = GameService.getInstance();
 
+    private GameController() { }
+
     public static void runGame() {
         int purchaseAmount = payForLotto();
         List<Lotto> purchasedLottos = purchaseLotto(purchaseAmount);

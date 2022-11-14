@@ -5,6 +5,8 @@ import lotto.view.constants.ErrorMessage;
 public class IOValidator {
     private static final String REGEX_INTEGER = "^[^0]\\d*";
 
+    public IOValidator() { }
+
     public static void validateFormattedStringToInteger(String value, String delimiter) {
         String delimiterRemoved = value.replaceAll(delimiter, "");
         if (value.length() == delimiterRemoved.length()) {
