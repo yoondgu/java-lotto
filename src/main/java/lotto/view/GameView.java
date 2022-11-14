@@ -20,6 +20,11 @@ public class GameView {
         return KeyboardReader.readInteger();
     }
 
+    public List<Integer> askLottoDrawNumbers() {
+        MessagePrinter.printLine(OutputMessage.ASK_DRAW_LOTTO_NUMBERS);
+        return KeyboardReader.readIntegersWithFormat(Format.DELIMITER_LOTTO_NUMBERS);
+    }
+
     public void showLottoIssueAmount(int amount) {
         MessagePrinter.printLine(amount, Format.SUFFIX_ISSUE_AMOUNT);
     }

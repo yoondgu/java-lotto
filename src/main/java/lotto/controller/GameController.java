@@ -19,5 +19,7 @@ public class GameController {
         gameView.showLottoIssueAmount(issueAmount);
         List<Lotto> purchasedLottos = gameService.generateLottoByIssueAmount(issueAmount);
         gameView.showPurchasedLottos(purchasedLottos);
+        List<Integer> lottoDrawNumbers = gameView.askLottoDrawNumbers();
+//        System.out.println(lottoDrawNumbers);
     }
 }
