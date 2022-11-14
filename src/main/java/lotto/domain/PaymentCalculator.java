@@ -15,7 +15,7 @@ public class PaymentCalculator {
         return totalPrize*(100.0)/payment;
     }
 
-    public int calculateIssueAmountByPayment() {
+    public int calculateAmountByLottoPrice() {
         return payment/(LottoRule.PRICE.getValue());
     }
 }

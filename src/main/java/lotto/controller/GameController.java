@@ -12,25 +12,39 @@ public class GameController {
     private static final GameService gameService = GameService.getInstance();
 
     public static void runGame() {
-        int lottoPayment = gameView.askPayment();
-        gameService.initializePaymentCalculator(lottoPayment);
-        int issueAmount = gameService.calculateIssueAmount();
-        gameView.showLottoIssueAmount(issueAmount);
-
-        List<Lotto> purchasedLottos = gameService.sellLottosByAmount(issueAmount);
-        gameView.showPurchasedLottos(purchasedLottos);
-
-        List<Integer> drawnNumbers = gameView.askLottoDrawNumbers();
-        int drawnBonusNumber = gameView.askLottoDrawBonusNumber();
-        gameService.drawLotto(drawnNumbers, drawnBonusNumber);
-
-        TotalLottoResult result = gameService.checkTotalLottoResult(purchasedLottos);
-        gameView.showTotalLottoResult(result);
-        double earningRatio = gameService.calculateEarningRatio(result.addUpTotalPrizeAmount());
-        gameView.showEarningRatio(earningRatio);
+        int purchaseAmount = payForLotto();
+        List<Lotto> purchasedLottos = purchaseLotto(purchaseAmount);
+        drawWinningLotto();
+        summarizeResult(purchasedLottos);
     }
 
     public static void informExitByError(Exception exception) {
         gameView.ShowExitByErrorMessage(exception);
+    }
+
+    private static int payForLotto() {
+        int lottoPayment = gameView.askPayment();
+        gameService.initializePaymentCalculator(lottoPayment);
+        return gameService.calculatePurchaseAmount();
+    }
+
+    private static List<Lotto> purchaseLotto(int purchaseAmount) {
+        gameView.showPurchaseAmount(purchaseAmount);
+        List<Lotto> purchasedLottos = gameService.sellLottosByAmount(purchaseAmount);
+        gameView.showPurchasedLottos(purchasedLottos);
+        return purchasedLottos;
+    }
+
+    private static void drawWinningLotto() {
+        List<Integer> drawnNumbers = gameView.askLottoDrawNumbers();
+        int drawnBonusNumber = gameView.askLottoDrawBonusNumber();
+        gameService.drawLotto(drawnNumbers, drawnBonusNumber);
+    }
+
+    private static void summarizeResult(List<Lotto> purchasedLottos) {
+        TotalLottoResult result = gameService.checkTotalLottoResult(purchasedLottos);
+        gameView.showTotalLottoResult(result);
+        double earningRatio = gameService.calculateEarningRatio(result.addUpTotalPrizeAmount());
+        gameView.showEarningRatio(earningRatio);
     }
 }

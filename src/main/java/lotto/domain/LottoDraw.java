@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoDraw {
-    private final Lotto winningLotto;
+    private final Lotto drawnLotto;
     private final int bonusNumber;
 
-    public LottoDraw(Lotto winningLotto, int bonusNumber) {
-        validate(winningLotto, bonusNumber);
-        this.winningLotto = winningLotto;
+    public LottoDraw(Lotto drawnLotto, int bonusNumber) {
+        validate(drawnLotto, bonusNumber);
+        this.drawnLotto = drawnLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto winningLotto, int bonusNumber) {
-        LottoNumbersValidator.validateLottoDrawNumbers(winningLotto, bonusNumber);
+    private void validate(Lotto drawnLotto, int bonusNumber) {
+        LottoNumbersValidator.validateLottoDrawNumbers(drawnLotto, bonusNumber);
     }
 
     public Map<LottoRank, Integer> sumUpCountOfRankings(List<Lotto> purchasedLottos) {
@@ -52,7 +52,7 @@ public class LottoDraw {
     }
 
     private boolean isRightRanking(LottoRank rank, Lotto purchasedLotto) {
-        int matchCount = winningLotto.countMatchingNumbers(purchasedLotto);
+        int matchCount = drawnLotto.countMatchingNumbers(purchasedLotto);
         if (rank.hasSameMatchCount(matchCount) && rank.requiredToCheckBonus()) {
             return purchasedLotto.containsThisNumber(bonusNumber);
         }

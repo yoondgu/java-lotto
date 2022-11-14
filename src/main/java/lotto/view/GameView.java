@@ -28,7 +28,7 @@ public class GameView {
         return KeyboardReader.readIntegersWithFormat(Format.DELIMITER_LOTTO_NUMBERS);
     }
 
-    public void showLottoIssueAmount(int amount) {
+    public void showPurchaseAmount(int amount) {
         MessagePrinter.printLine(Format.STRING_ISSUE_AMOUNT, amount);
     }
 

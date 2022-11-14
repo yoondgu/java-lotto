@@ -21,8 +21,8 @@ public class GameService {
         this.calculator = new PaymentCalculator(payment);
     }
 
-    public int calculateIssueAmount() {
-        return calculator.calculateIssueAmountByPayment();
+    public int calculatePurchaseAmount() {
+        return calculator.calculateAmountByLottoPrice();
     }
 
     public List<Lotto> sellLottosByAmount(int amount) {
