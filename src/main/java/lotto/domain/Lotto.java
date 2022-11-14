@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.domain.validator.LottoNumbersValidator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -20,6 +22,13 @@ public class Lotto {
 
     public boolean containsThisNumber(int number) {
         return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> numbersToSort = new ArrayList<>(numbers);
+        Collections.sort(numbersToSort);
+        return numbersToSort.toString();
     }
 
     private void validate(List<Integer> numbers) {
