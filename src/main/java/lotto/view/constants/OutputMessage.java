@@ -9,7 +9,7 @@ public enum OutputMessage {
 
     private final String text;
 
-    private OutputMessage(String text) {
+    OutputMessage(String text) {
         this.text = text;
     }
 

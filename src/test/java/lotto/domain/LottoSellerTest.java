@@ -25,6 +25,6 @@ class LottoSellerTest {
     void issueLottosByAmountLessThan1() {
         assertThatThrownBy(() -> LottoSeller.issueLottosByAmount(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.PAYMENT_ZERO_COUNT.getValue());
+                .hasMessage(ErrorMessage.AMOUNT_INSUFFICIENT.getValue());
     }
 }

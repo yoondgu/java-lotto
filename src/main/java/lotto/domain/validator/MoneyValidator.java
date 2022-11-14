@@ -9,7 +9,7 @@ public class MoneyValidator {
             throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.getValue());
         }
         if (isLessThanLottoPrice(payment)) {
-            throw new IllegalArgumentException(ErrorMessage.PAYMENT_ZERO_COUNT.getValue());
+            throw new IllegalArgumentException(ErrorMessage.PAYMENT_INSUFFICIENT.getValue());
         }
         if (hasRemainderForLottoPrice(payment)) {
             throw new IllegalArgumentException(ErrorMessage.PAYMENT_HAS_REMAINDER.getValue());

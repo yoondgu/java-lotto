@@ -37,7 +37,7 @@ public class KeyboardReader {
             throw new IllegalArgumentException(ErrorMessage.INPUT_ILLEGAL_FORMAT.getValue());
         }
         if (!delimiterRemoved.matches(REGEX_INTEGER)) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_INTEGER.getValue());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_CONTAINS_NOT_INTEGER.getValue());
         }
         if (value.contains(",0")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_START_WITH_ZERO.getValue());

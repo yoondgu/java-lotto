@@ -53,7 +53,7 @@ public class LottoDraw {
 
     private boolean isRightRanking(LottoRank rank, Lotto purchasedLotto) {
         int matchCount = drawnLotto.countMatchingNumbers(purchasedLotto);
-        if (rank.hasSameMatchCount(matchCount) && rank.requiredToCheckBonus()) {
+        if (rank.hasSameMatchCount(matchCount) && rank.isRequiredToCheckBonus()) {
             return purchasedLotto.containsThisNumber(bonusNumber);
         }
         return rank.hasSameMatchCount(matchCount);

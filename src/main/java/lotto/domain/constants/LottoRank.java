@@ -13,18 +13,10 @@ public enum LottoRank {
     private final boolean requiredToCheckBonus;
     private final int prize;
 
-    private LottoRank(int requiredMatchCount, boolean requiredToCheckBonus, int prize) {
+    LottoRank(int requiredMatchCount, boolean requiredToCheckBonus, int prize) {
         this.requiredMatchCount = requiredMatchCount;
         this.requiredToCheckBonus = requiredToCheckBonus;
         this.prize = prize;
-    }
-
-    public boolean requiredToCheckBonus() {
-        return requiredToCheckBonus;
-    }
-
-    public boolean hasSameMatchCount(int matchCount) {
-        return matchCount == requiredMatchCount;
     }
 
     public int getRequiredMatchCount() {
@@ -37,5 +29,9 @@ public enum LottoRank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public boolean hasSameMatchCount(int matchCount) {
+        return matchCount == requiredMatchCount;
     }
 }

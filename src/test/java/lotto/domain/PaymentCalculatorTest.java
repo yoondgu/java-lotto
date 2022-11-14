@@ -20,7 +20,7 @@ class PaymentCalculatorTest {
     void createCalculatorByInsufficientPayment() {
         assertThatThrownBy(() -> new PaymentCalculator(900))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.PAYMENT_ZERO_COUNT.getValue());
+                .hasMessage(ErrorMessage.PAYMENT_INSUFFICIENT.getValue());
     }
 
     @DisplayName("구입 금액이 1,000보다 크지만 나머지가 존재하면 예외가 발생")

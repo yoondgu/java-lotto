@@ -19,9 +19,8 @@ public class LottoSeller {
     }
 
     private static void validateIssueAmount(int amount) {
-        // TODO 예외클래스, 에러메시지 처리 적절한지 검토
         if (amount < 1) {
-            throw new IllegalArgumentException(ErrorMessage.PAYMENT_ZERO_COUNT.getValue());
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_INSUFFICIENT.getValue());
         }
     }
 

@@ -8,7 +8,9 @@ public enum ErrorMessage {
     MONEY_NEGATIVE("금액은 음수일 수 없습니다."),
 
     PAYMENT_HAS_REMAINDER("거스름돈이 필요 없는 금액만 허용됩니다."),
-    PAYMENT_ZERO_COUNT("로또 구매 수량은 최소 1개입니다."),
+    PAYMENT_INSUFFICIENT("최소 구매 금액보다 적은 금액을 입력하였습니다."),
+
+    AMOUNT_INSUFFICIENT("로또 구매 개수는 최소 1개입니다."),
 
     RESULT_RANK_ILLEGAL("당첨 내역의 등수 목록이 로또 등수 정보와 일치하지 않습니다."),
     RESULT_RANK_NOT_COUNTED("비어 있는 등수 목록입니다.")
@@ -16,7 +18,7 @@ public enum ErrorMessage {
 
     private final String value;
 
-    private ErrorMessage(String value) {
+    ErrorMessage(String value) {
         this.value = value;
     }
 
