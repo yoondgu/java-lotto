@@ -47,6 +47,6 @@ public class LottoNumbersValidator {
 
     private static boolean containsDuplicatedNumber(List<Integer> lottoNumbers) {
         int distinctedNumbersCount = (int) lottoNumbers.stream().distinct().count();
-        return (distinctedNumbersCount != LottoRule.NUMBERS_COUNT.getValue());
+        return distinctedNumbersCount != LottoRule.NUMBERS_COUNT.getValue();
     }
 }

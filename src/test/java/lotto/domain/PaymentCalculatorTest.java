@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.domain.constants.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PaymentCalculatorTest {
     @DisplayName("구입 금액이 음수이면 예외가 발생")

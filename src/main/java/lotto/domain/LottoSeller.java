@@ -29,6 +29,6 @@ public class LottoSeller {
     private static List<Integer> generateLottoNumbersByRandom() {
         int startInclusive = LottoRule.MINIMUM_NUMBER.getValue();
         int endInclusive = LottoRule.MAXIMUM_NUMBER.getValue();
-        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive,6);
+        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, 6);
     }
 }

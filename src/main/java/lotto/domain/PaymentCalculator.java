@@ -10,12 +10,13 @@ public class PaymentCalculator {
         MoneyValidator.validatePayment(payment);
         this.payment = payment;
     }
+
     public double calculateEarningRatio(int totalPrize) {
         MoneyValidator.validateTotalPrize(totalPrize);
-        return totalPrize*(100.0)/payment;
+        return (totalPrize * (100.0)) / payment;
     }
 
     public int calculateAmountByLottoPrice() {
-        return payment/(LottoRule.PRICE.getValue());
+        return payment / (LottoRule.PRICE.getValue());
     }
 }

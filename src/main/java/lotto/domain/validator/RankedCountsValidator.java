@@ -33,6 +33,6 @@ public class RankedCountsValidator {
         int rankingsCount = rankedCounts.values()
                 .stream()
                 .reduce(0, Integer::sum);
-        return (rankingsCount == 0);
+        return rankingsCount == 0;
     }
 }

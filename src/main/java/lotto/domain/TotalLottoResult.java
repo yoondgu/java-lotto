@@ -21,12 +21,12 @@ public class TotalLottoResult {
         return rankedCounts.keySet()
                 .stream()
                 .map(this::calculatePrizeByCountedRank)
-                .reduce(0,Integer::sum);
+                .reduce(0, Integer::sum);
     }
 
     private int calculatePrizeByCountedRank(LottoRank countedRank) {
         int count = rankedCounts.get(countedRank);
         int prize = countedRank.getPrize();
-        return count*prize;
+        return count * prize;
     }
 }

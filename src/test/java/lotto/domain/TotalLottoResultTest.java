@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.domain.constants.ErrorMessage;
 import lotto.domain.constants.LottoRank;
 import org.junit.jupiter.api.DisplayName;
@@ -7,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class TotalLottoResultTest {
     @DisplayName("주어진 당첨 내역의 등수 목록이 등수 정보와 일치하지 않는 경우 예외가 발생")

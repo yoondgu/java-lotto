@@ -1,6 +1,10 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoDraw;
+import lotto.domain.LottoSeller;
+import lotto.domain.PaymentCalculator;
+import lotto.domain.TotalLottoResult;
 import lotto.domain.constants.LottoRank;
 
 import java.util.List;

@@ -7,7 +7,7 @@ public class MoneyValidator {
     private MoneyValidator() { }
 
     public static void validatePayment(int payment) {
-        if(isNegative(payment)) {
+        if (isNegative(payment)) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.getValue());
         }
         if (isLessThanLottoPrice(payment)) {
@@ -24,7 +24,7 @@ public class MoneyValidator {
         }
     }
 
-    private static boolean isNegative(int money)  {
+    private static boolean isNegative(int money) {
         return money < 0;
     }
 
@@ -33,6 +33,6 @@ public class MoneyValidator {
     }
 
     private static boolean hasRemainderForLottoPrice(int money) {
-        return money%(LottoRule.PRICE.getValue()) != 0;
+        return (money % (LottoRule.PRICE.getValue())) != 0;
     }
 }
