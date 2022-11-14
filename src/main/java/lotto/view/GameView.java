@@ -62,7 +62,8 @@ public class GameView {
     }
 
     public void showEarningRatio(double earningRatio) {
-        MessagePrinter.printLine(Format.STRING_EARNING_RATIO, earningRatio);
+        DecimalFormat currecyFormatter= new DecimalFormat("###,###.#");
+        MessagePrinter.printLine(Format.STRING_EARNING_RATIO, currecyFormatter.format(earningRatio));
     }
 
     public void ShowExitByErrorMessage(Exception exception) {
