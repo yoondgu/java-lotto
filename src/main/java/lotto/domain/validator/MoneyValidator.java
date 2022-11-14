@@ -7,9 +7,7 @@ public class MoneyValidator {
     private MoneyValidator() { }
 
     public static void validatePayment(int payment) {
-        if (isNegative(payment)) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.getValue());
-        }
+        validateMoneyValue(payment);
         if (isLessThanLottoPrice(payment)) {
             throw new IllegalArgumentException(ErrorMessage.PAYMENT_INSUFFICIENT.getValue());
         }
@@ -18,8 +16,8 @@ public class MoneyValidator {
         }
     }
 
-    public static void validateTotalPrize(int prize) {
-        if (isNegative(prize)) {
+    public static void validateMoneyValue(int money) {
+        if (isNegative(money)) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.getValue());
         }
     }

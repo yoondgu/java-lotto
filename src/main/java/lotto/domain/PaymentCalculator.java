@@ -12,7 +12,7 @@ public class PaymentCalculator {
     }
 
     public double calculateEarningRatio(int totalPrize) throws IllegalArgumentException {
-        MoneyValidator.validateTotalPrize(totalPrize);
+        MoneyValidator.validateMoneyValue(totalPrize);
         return (totalPrize * (100.0)) / payment;
     }
 
