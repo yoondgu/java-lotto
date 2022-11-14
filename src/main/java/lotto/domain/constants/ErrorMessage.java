@@ -8,7 +8,10 @@ public enum ErrorMessage {
     MONEY_NEGATIVE("금액은 음수일 수 없습니다."),
 
     PAYMENT_HAS_REMAINDER("거스름돈이 필요 없는 금액만 허용됩니다."),
-    PAYMENT_ZERO_COUNT("로또 구매 수량은 최소 1개입니다.")
+    PAYMENT_ZERO_COUNT("로또 구매 수량은 최소 1개입니다."),
+
+    RESULT_RANK_ILLEGAL("당첨 내역의 등수 목록이 로또 등수 정보와 일치하지 않습니다."),
+    RESULT_RANK_NOT_COUNTED("비어 있는 등수 목록입니다.")
     ;
 
     private final String value;

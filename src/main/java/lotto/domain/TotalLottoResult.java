@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.constants.ErrorMessage;
 import lotto.domain.constants.LottoRank;
 
 import java.util.Arrays;
@@ -28,18 +29,17 @@ public class TotalLottoResult {
         return count*prize;
     }
 
+    // TODO validator 클래스 분리 여부
     private void validateTotalCountOfRankings(Map<LottoRank, Integer> totalCountOfRankings) {
-        if (hasRankNotCounted(totalCountOfRankings)) {
-            // TODO 에러메시지 작성
-            throw new IllegalArgumentException("");
+        if (isRanksIllegal(totalCountOfRankings)) {
+            throw new IllegalArgumentException(ErrorMessage.RESULT_RANK_ILLEGAL.getValue());
         }
-        if (isTotalCountZero(totalCountOfRankings)) {
-            // TODO 에러메시지 작성
-            throw new IllegalArgumentException("");
+        if (hasNotCounted(totalCountOfRankings)) {
+            throw new IllegalArgumentException(ErrorMessage.RESULT_RANK_NOT_COUNTED.getValue());
         }
     }
 
-    private boolean hasRankNotCounted(Map<LottoRank, Integer> totalCountOfRankings) {
+    private boolean isRanksIllegal(Map<LottoRank, Integer> totalCountOfRankings) {
         Set<LottoRank> countedRanks = totalCountOfRankings.keySet();
         List<LottoRank> allRanks = Arrays.asList(LottoRank.values());
         if (countedRanks.size() != allRanks.size()) {
@@ -48,7 +48,7 @@ public class TotalLottoResult {
         return !countedRanks.containsAll(allRanks);
     }
 
-    private boolean isTotalCountZero(Map<LottoRank, Integer> totalCountOfRankings) {
+    private boolean hasNotCounted(Map<LottoRank, Integer> totalCountOfRankings) {
         int rankingsCount = totalCountOfRankings.values()
                 .stream()
                 .reduce(0, Integer::sum);
