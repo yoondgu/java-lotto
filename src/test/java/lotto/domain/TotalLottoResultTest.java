@@ -16,10 +16,4 @@ class TotalLottoResultTest {
             LottoRank.RANK_5, 2, LottoRank.RANK_LOSE, 4)
             );
     private final TotalLottoResult result = new TotalLottoResult(totalCountOfRankings);
-
-    @DisplayName("계산한 수익률은 소수점 둘째자리에서 반올림")
-    @Test
-    void calculateEarningRatioRoundedUpToSecondDigit() {
-        assertThat(result.calculateEarningRatio(6000)).isEqualTo(166.7);
-    }
 }
