@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.constants.ErrorMessage;
 import lotto.domain.constants.LottoRule;
-import lotto.domain.validator.PaymentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +16,6 @@ public class LottoSeller {
             purchasedLottos.add(new Lotto(randomNumbers));
         }
         return purchasedLottos;
-    }
-
-    // TODO 별도 클래스 Calculator로 분리하기
-    public static int calculateIssueAmountByPayment(int payment) {
-        PaymentValidator.validatePayment(payment);
-        return payment/(LottoRule.PRICE.getValue());
     }
 
     private static void validateIssueAmount(int amount) {

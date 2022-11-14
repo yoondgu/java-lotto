@@ -15,14 +15,7 @@ public class TotalLottoResult {
         this.totalCountOfRankings = totalCountOfRankings;
     }
 
-    // TODO 별도 클래스 Calculator로 분리
-    public double calculateEarningRatio(int payment) {
-        int totalPrize = addUpTotalPrizeAmount();
-        double earningRatio = totalPrize*(100.0)/payment;
-        return Math.round(earningRatio*10)/10.0;
-    }
-
-    private int addUpTotalPrizeAmount() {
+    public int addUpTotalPrizeAmount() {
         return totalCountOfRankings.keySet()
                 .stream()
                 .map(this::calculatePrizeByCountedRank)
@@ -52,10 +45,7 @@ public class TotalLottoResult {
         if (countedRanks.size() != allRanks.size()) {
             return true;
         }
-        if (!countedRanks.containsAll(allRanks)) {
-            return true;
-        }
-        return false;
+        return !countedRanks.containsAll(allRanks);
     }
 
     private boolean isTotalCountZero(Map<LottoRank, Integer> totalCountOfRankings) {
