@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.constants.ErrorMessage;
 import lotto.domain.constants.LottoRule;
+import lotto.domain.validator.PaymentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,9 @@ public class LottoSeller {
         return purchasedLottos;
     }
 
+    // TODO 별도 클래스 Calculator로 분리하기
     public static int calculateIssueAmountByPayment(int payment) {
-        validatePayment(payment);
+        PaymentValidator.validatePayment(payment);
         return payment/(LottoRule.PRICE.getValue());
     }
 
@@ -27,20 +29,6 @@ public class LottoSeller {
         // TODO 예외클래스, 에러메시지 처리 적절한지 검토
         if (amount < 1) {
             throw new IllegalArgumentException(ErrorMessage.PAYMENT_ZERO_COUNT.getValue());
-        }
-    }
-
-    private static void validatePayment(int payment) {
-        if(payment < 0) {
-            throw new IllegalArgumentException(ErrorMessage.PAYMENT_NEGATIVE.getValue());
-        }
-
-        int lottoPrice = LottoRule.PRICE.getValue();
-        if (payment < lottoPrice) {
-            throw new IllegalArgumentException(ErrorMessage.PAYMENT_ZERO_COUNT.getValue());
-        }
-        if (payment%(lottoPrice) != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PAYMENT_HAS_REMAINDER.getValue());
         }
     }
 
