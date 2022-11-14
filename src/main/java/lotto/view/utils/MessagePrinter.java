@@ -13,7 +13,7 @@ public class MessagePrinter {
 
     public static void printLine(OutputMessage content) {
         validateMessage(content);
-        System.out.print(content.getText());
+        System.out.println(content.getText());
     }
 
     public static void printLine(int value, Format suffix) {
