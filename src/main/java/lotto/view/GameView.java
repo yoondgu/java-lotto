@@ -27,7 +27,7 @@ public class GameView {
 
     public List<Integer> askLottoDrawNumbers() throws IllegalArgumentException, NullPointerException {
         MessagePrinter.printLine(OutputMessage.ASK_DRAW_LOTTO_NUMBERS);
-        return KeyboardReader.readIntegersWithFormat(Format.DELIMITER_LOTTO_NUMBERS);
+        return KeyboardReader.readFormattedStringToInteger(Format.DELIMITER_LOTTO_NUMBERS);
     }
 
     public void showPurchaseAmount(int amount) throws NullPointerException {
@@ -47,7 +47,7 @@ public class GameView {
 
     public void showTotalLottoResult(TotalLottoResult result) throws NullPointerException {
         MessagePrinter.printLine(OutputMessage.INFORM_TOTAL_LOTTO_RESULT);
-        DecimalFormat currecyFormatter= new DecimalFormat("###,###");
+        DecimalFormat currecyFormatter= new DecimalFormat(Format.NUMBER_CURRENCY.getText());
         for (LottoRank rank : LottoRank.values()) {
             if (rank == LottoRank.RANK_LOSE) {
                 continue;
@@ -60,7 +60,7 @@ public class GameView {
     }
 
     public void showEarningRatio(double earningRatio) throws NullPointerException {
-        DecimalFormat currecyFormatter= new DecimalFormat("###,###.#");
+        DecimalFormat currecyFormatter= new DecimalFormat(Format.NUMBER_CURRENCY_WITH_FIRST_DECIMAL.getText());
         MessagePrinter.printLine(Format.STRING_EARNING_RATIO, currecyFormatter.format(earningRatio));
     }
 

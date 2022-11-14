@@ -15,7 +15,7 @@ public class IOValidator {
         if (!delimiterRemoved.matches(REGEX_INTEGER)) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_CONTAINS_NOT_INTEGER.getValue());
         }
-        if (value.contains(",0")) {
+        if (value.contains(delimiter + "0")) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_START_WITH_ZERO.getValue());
         }
     }

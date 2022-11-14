@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class KeyboardReader {
     private KeyboardReader() { }
 
-    public static List<Integer> readIntegersWithFormat(Format delimiter) throws IllegalArgumentException {
+    public static List<Integer> readFormattedStringToInteger(Format delimiter) throws IllegalArgumentException {
         String readValue = readLine();
         String delimterValue = delimiter.getText();
         IOValidator.validateFormattedStringToInteger(readValue, delimterValue);
