@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.domain.constants.LottoRank;
-import lotto.domain.exception.IllegalCountOfRankingsException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,13 +10,13 @@ import java.util.Set;
 public class TotalLottoResult {
     private final Map<LottoRank, Integer> totalCountOfRankings;
 
-    public TotalLottoResult(Map<LottoRank, Integer> totalCountOfRankings) throws IllegalCountOfRankingsException {
+    public TotalLottoResult(Map<LottoRank, Integer> totalCountOfRankings) {
         validateTotalCountOfRankings(totalCountOfRankings);
         this.totalCountOfRankings = totalCountOfRankings;
     }
 
+    // TODO 별도 클래스 Calculator로 분리
     public double calculateEarningRatio(int payment) {
-        // TODO validate payment
         int totalPrize = addUpTotalPrizeAmount();
         double earningRatio = totalPrize*(100.0)/payment;
         return Math.round(earningRatio*10)/10.0;
@@ -36,14 +35,14 @@ public class TotalLottoResult {
         return count*prize;
     }
 
-    private void validateTotalCountOfRankings(Map<LottoRank, Integer> totalCountOfRankings) throws IllegalCountOfRankingsException {
+    private void validateTotalCountOfRankings(Map<LottoRank, Integer> totalCountOfRankings) {
         if (hasRankNotCounted(totalCountOfRankings)) {
             // TODO 에러메시지 작성
-            throw new IllegalCountOfRankingsException("");
+            throw new IllegalArgumentException("");
         }
         if (isTotalCountZero(totalCountOfRankings)) {
             // TODO 에러메시지 작성
-            throw new IllegalCountOfRankingsException("");
+            throw new IllegalArgumentException("");
         }
     }
 
@@ -63,9 +62,6 @@ public class TotalLottoResult {
         int rankingsCount = totalCountOfRankings.values()
                 .stream()
                 .reduce(0, Integer::sum);
-        if (rankingsCount != 0) {
-            return true;
-        }
-        return false;
+        return (rankingsCount == 0);
     }
 }

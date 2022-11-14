@@ -20,6 +20,6 @@ class TotalLottoResultTest {
     @DisplayName("계산한 수익률은 소수점 둘째자리에서 반올림")
     @Test
     void calculateEarningRatioRoundedUpToSecondDigit() {
-        assertThat(result.calculateEarningRatio()).isEqualTo(166.7);
+        assertThat(result.calculateEarningRatio(6000)).isEqualTo(166.7);
     }
 }
