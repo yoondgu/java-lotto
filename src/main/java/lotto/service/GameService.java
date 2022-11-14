@@ -34,8 +34,8 @@ public class GameService {
     }
 
     public TotalLottoResult checkTotalLottoResult(List<Lotto> purchasedLottos) {
-        Map<LottoRank, Integer> countOfRankings = lottoDraw.sumUpCountOfRankings(purchasedLottos);
-        return new TotalLottoResult(countOfRankings);
+        Map<LottoRank, Integer> RankedCounts = lottoDraw.sumUpRankedCounts(purchasedLottos);
+        return new TotalLottoResult(RankedCounts);
     }
 
     public double calculateEarningRatio(int totalPrize) {

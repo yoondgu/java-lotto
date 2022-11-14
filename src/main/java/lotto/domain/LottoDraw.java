@@ -22,24 +22,24 @@ public class LottoDraw {
         LottoNumbersValidator.validateLottoDrawNumbers(drawnLotto, bonusNumber);
     }
 
-    public Map<LottoRank, Integer> sumUpCountOfRankings(List<Lotto> purchasedLottos) {
-        Map<LottoRank, Integer> totalCountOfRankings = initializeCountOfRankings();
+    public Map<LottoRank, Integer> sumUpRankedCounts(List<Lotto> purchasedLottos) {
+        Map<LottoRank, Integer> rankedCounts = initializeRankedCounts();
         purchasedLottos.stream()
                 .map(this::calculateRankingByPurchasedLotto)
-                .forEach(ranking -> addOneToCountOfRankings(totalCountOfRankings, ranking));
-        return totalCountOfRankings;
+                .forEach(ranking -> addOneToRankedCounts(rankedCounts, ranking));
+        return rankedCounts;
     }
 
-    private Map<LottoRank, Integer> initializeCountOfRankings() {
-        Map<LottoRank, Integer> totalCountOfRankings = new HashMap<>();
+    private Map<LottoRank, Integer> initializeRankedCounts() {
+        Map<LottoRank, Integer> rankedCounts = new HashMap<>();
         Arrays.stream(LottoRank.values())
-                .forEach(rankValue -> totalCountOfRankings.put(rankValue, 0));
-        return totalCountOfRankings;
+                .forEach(rankValue -> rankedCounts.put(rankValue, 0));
+        return rankedCounts;
     }
 
-    private void addOneToCountOfRankings(Map<LottoRank, Integer> totalCountOfRankings, LottoRank ranking) {
-        int count = totalCountOfRankings.getOrDefault(ranking, 0) + 1;
-        totalCountOfRankings.put(ranking, count);
+    private void addOneToRankedCounts(Map<LottoRank, Integer> rankedCounts, LottoRank ranking) {
+        int count = rankedCounts.getOrDefault(ranking, 0) + 1;
+        rankedCounts.put(ranking, count);
     }
 
     private LottoRank calculateRankingByPurchasedLotto(Lotto purchasedLotto) {

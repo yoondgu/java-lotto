@@ -31,8 +31,8 @@ class LottoDrawTest {
     @Test
     void sumUpCountOfAllRankingsIncludingZero() {
         List<Lotto> purchasedLottos = LottoSeller.issueLottosByAmount(10);
-        Map<LottoRank, Integer> totalCountOfRankings = new LottoDraw(drawnLotto, 7).sumUpCountOfRankings(purchasedLottos);
-        assertThat(totalCountOfRankings.keySet()).containsExactlyInAnyOrder(LottoRank.values());
+        Map<LottoRank, Integer> rankedCounts = new LottoDraw(drawnLotto, 7).sumUpRankedCounts(purchasedLottos);
+        assertThat(rankedCounts.keySet()).containsExactlyInAnyOrder(LottoRank.values());
     }
 
     @DisplayName("당첨 등수의 개수 합산 시 낙첨인 경우도 개수를 저장")
@@ -40,8 +40,8 @@ class LottoDrawTest {
     void sumUpCountOfAllRankingsIncludingLose() {
         int lottosCount = 10;
         List<Lotto> purchasedLottos = LottoSeller.issueLottosByAmount(lottosCount);
-        Map<LottoRank, Integer> totalCountOfRankings = new LottoDraw(drawnLotto, 7).sumUpCountOfRankings(purchasedLottos);
-        int sumOfCount = totalCountOfRankings.values()
+        Map<LottoRank, Integer> rankedCounts = new LottoDraw(drawnLotto, 7).sumUpRankedCounts(purchasedLottos);
+        int sumOfCount = rankedCounts.values()
                 .stream()
                 .reduce(0, Integer::sum);
         assertThat(sumOfCount).isEqualTo(lottosCount);
