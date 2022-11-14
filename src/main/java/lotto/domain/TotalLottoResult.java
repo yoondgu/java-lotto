@@ -6,11 +6,11 @@ import lotto.domain.constants.LottoRule;
 import java.util.Map;
 
 public class TotalLottoResult {
-    private final Map<LottoRank, Integer> totalCountsOfRank;
+    private final Map<LottoRank, Integer> totalCountOfRankings;
 
     // TODO 전달받는 Map<LottoRank, Integer>에 대한 유효성 검사 여부, 한다면 예외클래스 무엇인지 검토할 것.
-    public TotalLottoResult(Map<LottoRank, Integer> totalCountsOfRank) {
-        this.totalCountsOfRank = totalCountsOfRank;
+    public TotalLottoResult(Map<LottoRank, Integer> totalCountOfRankings) {
+        this.totalCountOfRankings = totalCountOfRankings;
     }
 
     public double calculateEarningRatio() {
@@ -24,22 +24,21 @@ public class TotalLottoResult {
     }
 
     private int addUpTotalPurchaseCount() {
-        return totalCountsOfRank.values()
+        return totalCountOfRankings.values()
                 .stream()
                 .reduce(0, Integer::sum);
     }
 
     private int addUpTotalPrizeAmount() {
-        return totalCountsOfRank.keySet()
+        return totalCountOfRankings.keySet()
                 .stream()
                 .map(this::calculatePrizeByCountedRank)
                 .reduce(0,Integer::sum);
     }
 
     private int calculatePrizeByCountedRank(LottoRank countedRank) {
-        int count = totalCountsOfRank.get(countedRank);
+        int count = totalCountOfRankings.get(countedRank);
         int prize = countedRank.getPrize();
         return count*prize;
     }
-
 }
