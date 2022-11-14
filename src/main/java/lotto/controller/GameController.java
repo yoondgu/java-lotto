@@ -29,4 +29,8 @@ public class GameController {
         double earningRatio = gameService.calculateEarningRatio(result.addUpTotalPrizeAmount());
         gameView.showEarningRatio(earningRatio);
     }
+
+    public static void informExitByError(Exception exception) {
+        gameView.ShowExitByErrorMessage(exception);
+    }
 }

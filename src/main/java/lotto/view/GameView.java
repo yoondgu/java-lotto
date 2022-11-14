@@ -65,4 +65,11 @@ public class GameView {
         MessagePrinter.printLine(Format.STRING_EARNING_RATIO, earningRatio);
     }
 
+    public void ShowExitByErrorMessage(Exception exception) {
+        String errorMessage = exception.getMessage();
+        if (errorMessage != null) {
+            MessagePrinter.printLine(Format.STRING_ERROR_MESSAGE, errorMessage);
+        }
+        MessagePrinter.printLine("오류 발생으로 인해 프로그램을 종료합니다.");
+    }
 }

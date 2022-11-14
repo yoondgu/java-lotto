@@ -7,7 +7,7 @@ public class Application {
         try {
             GameController.runGame();
         } catch (IllegalArgumentException exception) {
-            // TODO [ERROR] 에러메시지 출력하기
+            GameController.informExitByError(exception);
         }
     }
 }

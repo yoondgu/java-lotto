@@ -1,6 +1,7 @@
 package lotto.view.utils;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.constants.ErrorMessage;
 import lotto.view.constants.Format;
 
 import java.util.Arrays;
@@ -33,23 +34,19 @@ public class KeyboardReader {
     private static void validateFormattedIntegers(String value, String delimiter) {
         String delimiterRemoved = value.replaceAll(delimiter, "");
         if (value.length() == delimiterRemoved.length()) {
-            // TODO 에러메시지 입력
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ILLEGAL_FORMAT.getValue());
         }
         if (!delimiterRemoved.matches(REGEX_INTEGER)) {
-            // TODO 에러메시지 입력
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_INTEGER.getValue());
         }
         if (value.contains(",0")) {
-            // TODO 에러메시지 입력
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_START_WITH_ZERO.getValue());
         }
     }
 
     private static void validateStringToInteger(String value) {
         if (!value.matches(REGEX_INTEGER)) {
-            // TODO 에러메시지 입력
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_INTEGER.getValue());
         }
     }
 }
