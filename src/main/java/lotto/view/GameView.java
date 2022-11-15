@@ -22,27 +22,34 @@ public class GameView {
 
     public int askPayment() throws IllegalArgumentException, NullPointerException {
         MessagePrinter.printLine(OutputMessage.ASK_PAYMENT);
-        return KeyboardReader.readInteger();
+        int payment = KeyboardReader.readInteger();
+        MessagePrinter.printLine("");
+        return payment;
     }
 
     public List<Integer> askLottoDrawNumbers() throws IllegalArgumentException, NullPointerException {
         MessagePrinter.printLine(OutputMessage.ASK_DRAW_LOTTO_NUMBERS);
-        return KeyboardReader.readFormattedStringToInteger(Format.DELIMITER_LOTTO_NUMBERS);
+        List<Integer> drawnNumbers = KeyboardReader.readFormattedStringToInteger(Format.DELIMITER_LOTTO_NUMBERS);
+        MessagePrinter.printLine("");
+        return drawnNumbers;
+    }
+
+    public int askLottoDrawBonusNumber() throws IllegalArgumentException, NullPointerException {
+        MessagePrinter.printLine(OutputMessage.ASK_DRAW_BONUS_NUMBER);
+        int drawnBonusNumber = KeyboardReader.readInteger();
+        MessagePrinter.printLine("");
+        return drawnBonusNumber;
     }
 
     public void showPurchaseAmount(int amount) throws NullPointerException {
         MessagePrinter.printLine(Format.STRING_ISSUE_AMOUNT, amount);
     }
 
-    public int askLottoDrawBonusNumber() throws IllegalArgumentException, NullPointerException {
-        MessagePrinter.printLine(OutputMessage.ASK_DRAW_BONUS_NUMBER);
-        return KeyboardReader.readInteger();
-    }
-
     public void showPurchasedLottos(List<Lotto> lottos) throws NullPointerException {
         for (Lotto lotto : lottos) {
             MessagePrinter.printLine(lotto);
         }
+        MessagePrinter.printLine("");
     }
 
     public void showTotalLottoResult(TotalLottoResult result) throws NullPointerException {

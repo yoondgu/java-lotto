@@ -6,12 +6,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.domain.constants.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.Map;
 
 class LottoDrawTest {
-    Lotto drawnLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    private final Lotto drawnLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
     @DisplayName("보너스 번호가 범위 밖의 숫자이면 예외가 발생")
     @Test
@@ -36,9 +38,9 @@ class LottoDrawTest {
     }
 
     @DisplayName("당첨 등수의 개수 합산 시 낙첨인 경우도 개수를 저장")
-    @Test
-    void sumUpCountOfAllRankingsIncludingLose() {
-        int lottosCount = 10;
+    @ParameterizedTest()
+    @CsvSource({"1", "10", "15"})
+    void sumUpCountOfAllRankingsIncludingLose(int lottosCount) {
         List<Lotto> purchasedLottos = LottoSeller.issueLottosByAmount(lottosCount);
         Map<LottoRank, Integer> rankedCounts = new LottoDraw(drawnLotto, 7).sumUpRankedCounts(purchasedLottos);
         int sumOfCount = rankedCounts.values()
