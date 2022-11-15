@@ -33,8 +33,8 @@ public class GameService {
         return LottoSeller.issueLottosByAmount(amount);
     }
 
-    public void drawLotto(List<Integer> drawnNumbers, int drawnBonusNumber) throws IllegalArgumentException {
-        this.lottoDraw = new LottoDraw(new Lotto(drawnNumbers), drawnBonusNumber);
+    public void drawLotto(Lotto lottoToDraw, int bonusNumberToDraw) throws IllegalArgumentException {
+        this.lottoDraw = new LottoDraw(lottoToDraw, bonusNumberToDraw);
     }
 
     public TotalLottoResult checkTotalLottoResult(List<Lotto> purchasedLottos) throws IllegalArgumentException {

@@ -64,7 +64,7 @@ public class GameView {
         MessagePrinter.printLine(Format.STRING_EARNING_RATIO, currecyFormatter.format(earningRatio));
     }
 
-    public void ShowExitByErrorMessage(Exception exception) throws NullPointerException {
+    public void showExitByErrorMessage(Exception exception) throws NullPointerException {
         String errorMessage = exception.getMessage();
         if (errorMessage != null) {
             MessagePrinter.printLine(Format.STRING_ERROR_MESSAGE, errorMessage);

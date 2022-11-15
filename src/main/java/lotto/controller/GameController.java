@@ -21,7 +21,7 @@ public class GameController {
     }
 
     public static void informExitByError(Exception exception) throws NullPointerException {
-        gameView.ShowExitByErrorMessage(exception);
+        gameView.showExitByErrorMessage(exception);
     }
 
     private static int payForLotto() {
@@ -38,9 +38,9 @@ public class GameController {
     }
 
     private static void drawWinningLotto() {
-        List<Integer> drawnNumbers = gameView.askLottoDrawNumbers();
-        int drawnBonusNumber = gameView.askLottoDrawBonusNumber();
-        gameService.drawLotto(drawnNumbers, drawnBonusNumber);
+        Lotto lottoToDraw = new Lotto(gameView.askLottoDrawNumbers());
+        int bonusNumberToDraw = gameView.askLottoDrawBonusNumber();
+        gameService.drawLotto(lottoToDraw, bonusNumberToDraw);
     }
 
     private static void summarizeResult(List<Lotto> purchasedLottos) {
