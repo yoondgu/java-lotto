@@ -39,18 +39,19 @@ public class LottoDraw {
     }
 
     private LottoRank calculateRankingByPurchasedLotto(Lotto purchasedLotto) {
+        int matchCount = drawnLotto.countMatchingNumbers(purchasedLotto);
+        boolean containsBonusNumber = purchasedLotto.containsThisNumber(bonusNumber);
         for (LottoRank rank : LottoRank.values()) {
-            if (isRightRanking(rank, purchasedLotto)) {
+            if (isRightRanking(rank, matchCount, containsBonusNumber)) {
                 return rank;
             }
         }
         return LottoRank.RANK_LOSE;
     }
 
-    private boolean isRightRanking(LottoRank rank, Lotto purchasedLotto) {
-        int matchCount = drawnLotto.countMatchingNumbers(purchasedLotto);
+    private boolean isRightRanking(LottoRank rank, int matchCount, boolean containsBonusNumber) {
         if (rank.hasSameMatchCount(matchCount) && rank.isRequiredToCheckBonus()) {
-            return purchasedLotto.containsThisNumber(bonusNumber);
+            return containsBonusNumber;
         }
         return rank.hasSameMatchCount(matchCount);
     }
