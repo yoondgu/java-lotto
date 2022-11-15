@@ -10,8 +10,7 @@ public enum Format {
     STRING_EARNING_RATIO("총 수익률은 %s%%입니다."),
     STRING_RANK_RESULT("%1$d개 일치 (%2$s원) - %3$d개"),
     STRING_RANK_WITH_BONUS_RESULT("%1$d개 일치, 보너스 볼 일치 (%2$s원) - %3$d개"),
-    STRING_ERROR_MESSAGE("[ERROR] %s"),
-    ;
+    STRING_ERROR_MESSAGE("[ERROR] %s");
 
     private final String text;
 
