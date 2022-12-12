@@ -20,8 +20,12 @@ public class OutputView {
         System.out.println(OutputMessage.DRAW_RESULT);
         System.out.println(OutputMessage.LINE_SEPARATOR);
         List<RankDTO> ranks = result.getRankCount();
-        ranks.forEach(rank -> System.out.printf(OutputMessageFormat.RANK_COUNT, rank.getRuleCount(),
-                OutputMessageFormat.LOCALE_MONEY.format(rank.getPrize()), rank.getWinningCount()));
+        ranks.forEach(this::printRankCount);
         System.out.printf(OutputMessageFormat.PROFIT_RATE, result.getProfitRate());
+    }
+
+    private void printRankCount(RankDTO rank) {
+        System.out.printf(OutputMessageFormat.decideRankCountFormat(rank), rank.getRuleCount(),
+                OutputMessageFormat.LOCALE_MONEY.format(rank.getPrize()), rank.getWinningCount());
     }
 }

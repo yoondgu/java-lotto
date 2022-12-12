@@ -1,8 +1,6 @@
 package lotto.model.domain;
 
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import lotto.model.constants.ErrorMessage;
 import lotto.model.constants.LottoRule;
@@ -27,18 +25,18 @@ public class LottoDraw {
     }
 
     public RankCount computeAllResult(List<Lotto> purchasedLottos) {
-        Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
+        RankCount rankCount = new RankCount();
         purchasedLottos.stream()
                 .map(lotto -> Rank.findRank(getMatchingCount(lotto), lotto.contains(bonusNumber)))
                 .filter(Objects::nonNull)
-                .forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1));
-        return new RankCount(rankCount);
+                .forEach(rankCount::addCount);
+        return rankCount;
     }
 
     private int getMatchingCount(Lotto lotto) {
-        return drawNumbers.getNumbers()
+        return (int) drawNumbers.getNumbers()
                 .stream()
                 .filter(lotto::contains)
-                .reduce(0, Integer::sum);
+                .count();
     }
 }

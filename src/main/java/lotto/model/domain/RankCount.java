@@ -1,15 +1,22 @@
 package lotto.model.domain;
 
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.dto.RankDTO;
 
 public class RankCount {
-    private final Map<Rank, Integer> rankCount;
+    private final Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
 
-    public RankCount(Map<Rank, Integer> rankCount) {
-        this.rankCount = rankCount;
+    public RankCount() {
+        Arrays.stream(Rank.values())
+                .forEach(rank -> rankCount.put(rank, 0));
+    }
+
+    public void addCount(Rank rank) {
+        rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
     }
 
     public double computeProfitRate(int purchaseAmount) {
@@ -25,7 +32,8 @@ public class RankCount {
     public List<RankDTO> of() {
         return rankCount.keySet()
                 .stream()
-                .map(rank -> new RankDTO(rank.getMatchingCount(), rank.getPrize(), rankCount.get(rank)))
+                .map(rank -> new RankDTO(rank.getMatchCount(), rank.getPrize(), rankCount.get(rank),
+                        rank.isToMatchBonus()))
                 .collect(Collectors.toList());
     }
 }
