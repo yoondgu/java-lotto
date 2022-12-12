@@ -21,4 +21,8 @@ public class LottoService {
                 .map(lotto -> new LottoDTO(lotto.getNumbers()))
                 .collect(Collectors.toList());
     }
+
+    public void drawLotto(List<Integer> drawNumbers, int bonusNumber) {
+        lottoDraw = new LottoDraw(drawNumbers, bonusNumber);
+    }
 }
