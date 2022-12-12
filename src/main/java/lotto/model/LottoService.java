@@ -12,9 +12,11 @@ public class LottoService {
     private final LottoMachine lottoMachine = new LottoMachine();
     private List<Lotto> purchasedLottos;
     private LottoDraw lottoDraw;
+    private int purchaseAmount;
 
     public List<LottoDTO> purchaseLottos(int purchaseAmount) {
         this.purchasedLottos = lottoMachine.issueLottos(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
         return toDTO(purchasedLottos);
     }
 
@@ -30,6 +32,7 @@ public class LottoService {
 
     public ResultDTO computeResult() {
         RankCount rankCount = lottoDraw.computeAllResult(purchasedLottos);
-        return null;
+        double profitRate = rankCount.computeProfitRate(purchaseAmount);
+        return new ResultDTO(rankCount.of(), profitRate);
     }
 }

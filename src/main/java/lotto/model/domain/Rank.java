@@ -27,6 +27,14 @@ public enum Rank {
                 .orElse(null);
     }
 
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
     private boolean isRightRank(int matchCount, boolean hasBonusNumber) {
         return matchingResult.apply(matchCount, hasBonusNumber);
     }
