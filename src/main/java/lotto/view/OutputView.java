@@ -28,4 +28,8 @@ public class OutputView {
         System.out.printf(OutputMessageFormat.decideRankCountFormat(rank), rank.getRuleCount(),
                 OutputMessageFormat.LOCALE_MONEY.format(rank.getPrize()), rank.getWinningCount());
     }
+
+    public void printErrorMessage(String message) {
+        System.out.printf(OutputMessageFormat.INFORM_ERROR, message);
+    }
 }
