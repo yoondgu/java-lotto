@@ -13,11 +13,17 @@ public class LottoController {
 
     public void run() {
         purchaseLotto();
+        drawLotto();
     }
 
     public void purchaseLotto() {
         int purchaseAmount = inputView.inputPurchaseAmount();
         List<LottoDTO> purchasedLottos = lottoService.purchaseLottos(purchaseAmount);
         outputView.printPurchasedLottos(purchasedLottos);
+    }
+
+    public void drawLotto() {
+        List<Integer> drawNumbers = inputView.inputDrawNumbers();
+        System.out.println(drawNumbers);
     }
 }
