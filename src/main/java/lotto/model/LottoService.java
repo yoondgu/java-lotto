@@ -1,29 +1,22 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.dto.LottoDTO;
 import lotto.dto.ResultDTO;
-import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoDraw;
+import lotto.model.domain.PurchasedLottos;
 import lotto.model.domain.RankCount;
 
 public class LottoService {
     private final LottoMachine lottoMachine = new LottoMachine();
-    private List<Lotto> purchasedLottos;
+    private PurchasedLottos purchasedLottos;
     private LottoDraw lottoDraw;
     private int purchaseAmount;
 
     public List<LottoDTO> purchaseLottos(int purchaseAmount) {
-        this.purchasedLottos = lottoMachine.issueLottos(purchaseAmount);
+        this.purchasedLottos = new PurchasedLottos(lottoMachine.issueLottos(purchaseAmount));
         this.purchaseAmount = purchaseAmount;
-        return toDTO(purchasedLottos);
-    }
-
-    private List<LottoDTO> toDTO(List<Lotto> lottos) {
-        return lottos.stream()
-                .map(lotto -> new LottoDTO(lotto.getNumbers()))
-                .collect(Collectors.toList());
+        return purchasedLottos.of();
     }
 
     public void drawLotto(List<Integer> drawNumbers, int bonusNumber) {
@@ -31,7 +24,7 @@ public class LottoService {
     }
 
     public ResultDTO computeResult() {
-        RankCount rankCount = lottoDraw.computeAllResult(purchasedLottos);
+        RankCount rankCount = purchasedLottos.computeAllResult(lottoDraw);
         double profitRate = rankCount.computeProfitRate(purchaseAmount);
         return new ResultDTO(rankCount.of(), profitRate);
     }

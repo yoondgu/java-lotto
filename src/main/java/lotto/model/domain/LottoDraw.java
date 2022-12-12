@@ -1,7 +1,6 @@
 package lotto.model.domain;
 
 import java.util.List;
-import java.util.Objects;
 import lotto.model.constants.ErrorMessage;
 import lotto.model.constants.LottoRule;
 
@@ -24,19 +23,7 @@ public class LottoDraw {
         }
     }
 
-    public RankCount computeAllResult(List<Lotto> purchasedLottos) {
-        RankCount rankCount = new RankCount();
-        purchasedLottos.stream()
-                .map(lotto -> Rank.findRank(getMatchingCount(lotto), lotto.contains(bonusNumber)))
-                .filter(Objects::nonNull)
-                .forEach(rankCount::addCount);
-        return rankCount;
-    }
-
-    private int getMatchingCount(Lotto lotto) {
-        return (int) drawNumbers.getNumbers()
-                .stream()
-                .filter(lotto::contains)
-                .count();
+    public Rank computeLottoRank(Lotto purchasedLotto) {
+        return Rank.findRank(drawNumbers.getMatchingCount(purchasedLotto), purchasedLotto.contains(bonusNumber));
     }
 }
