@@ -24,6 +24,6 @@ public class LottoController {
 
     public void drawLotto() {
         List<Integer> drawNumbers = inputView.inputDrawNumbers();
-        System.out.println(drawNumbers);
+        int bonusNumber = inputView.inputBonusNumber();
     }
 }
