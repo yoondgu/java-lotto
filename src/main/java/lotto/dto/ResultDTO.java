@@ -10,4 +10,12 @@ public class ResultDTO {
         this.rankCount = rankCount;
         this.profitRate = profitRate;
     }
+
+    public List<RankDTO> getRankCount() {
+        return rankCount;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
+    }
 }

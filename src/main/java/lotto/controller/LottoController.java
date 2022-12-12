@@ -15,6 +15,7 @@ public class LottoController {
     public void run() {
         purchaseLotto();
         drawLotto();
+        computeResult();
     }
 
     public void purchaseLotto() {
@@ -31,5 +32,6 @@ public class LottoController {
 
     public void computeResult() {
         ResultDTO result = lottoService.computeResult();
+        outputView.printResult(result);
     }
 }

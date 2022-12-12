@@ -1,25 +1,25 @@
 package lotto.dto;
 
 public class RankDTO {
-    private final int matchCount;
+    private final int ruleCount;
     private final int prize;
-    private final int count;
+    private final int winningCount;
 
-    public RankDTO(int matchCount, int prize, int count) {
-        this.matchCount = matchCount;
+    public RankDTO(int ruleCount, int prize, int winningCount) {
+        this.ruleCount = ruleCount;
         this.prize = prize;
-        this.count = count;
+        this.winningCount = winningCount;
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public int getRuleCount() {
+        return ruleCount;
     }
 
     public int getPrize() {
         return prize;
     }
 
-    public int getCount() {
-        return count;
+    public int getWinningCount() {
+        return winningCount;
     }
 }
