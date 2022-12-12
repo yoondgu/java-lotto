@@ -3,8 +3,10 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoDTO;
+import lotto.dto.ResultDTO;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoDraw;
+import lotto.model.domain.RankCount;
 
 public class LottoService {
     private final LottoMachine lottoMachine = new LottoMachine();
@@ -24,5 +26,10 @@ public class LottoService {
 
     public void drawLotto(List<Integer> drawNumbers, int bonusNumber) {
         lottoDraw = new LottoDraw(drawNumbers, bonusNumber);
+    }
+
+    public ResultDTO computeResult() {
+        RankCount rankCount = lottoDraw.computeAllResult(purchasedLottos);
+        return null;
     }
 }

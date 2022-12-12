@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.dto.LottoDTO;
+import lotto.dto.ResultDTO;
 import lotto.model.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,5 +27,9 @@ public class LottoController {
         List<Integer> drawNumbers = inputView.inputDrawNumbers();
         int bonusNumber = inputView.inputBonusNumber();
         lottoService.drawLotto(drawNumbers, bonusNumber);
+    }
+
+    public void computeResult() {
+        ResultDTO result = lottoService.computeResult();
     }
 }

@@ -1,6 +1,9 @@
 package lotto.model.domain;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import lotto.model.constants.ErrorMessage;
 import lotto.model.constants.LottoRule;
 
@@ -21,5 +24,21 @@ public class LottoDraw {
         if (drawNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATED_BONUS_NUMBER);
         }
+    }
+
+    public RankCount computeAllResult(List<Lotto> purchasedLottos) {
+        Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
+        purchasedLottos.stream()
+                .map(lotto -> Rank.findRank(getMatchingCount(lotto), lotto.contains(bonusNumber)))
+                .filter(Objects::nonNull)
+                .forEach(rank -> rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1));
+        return new RankCount(rankCount);
+    }
+
+    private int getMatchingCount(Lotto lotto) {
+        return drawNumbers.getNumbers()
+                .stream()
+                .filter(lotto::contains)
+                .reduce(0, Integer::sum);
     }
 }
